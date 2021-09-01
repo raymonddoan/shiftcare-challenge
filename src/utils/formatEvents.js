@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default function formatAvailabilities(params) {
   return params.map((param) => {
     const { name, day_of_week, available_at, available_until } = param;
@@ -55,9 +57,9 @@ export default function formatAvailabilities(params) {
       groupId: groupId,
       title: `${name} - Unavailable`,
       daysOfWeek: daysOfWeek,
-      startTime: available_at.split(' ').join(''),
-      endTime: available_until.split(' ').join(''),
-      // display: "inverse-background",
+      startTime: moment(available_at, "hh:mm A").format("HH:mm"),
+      endTime: moment(available_until, "hh:mm A").format("HH:mm"),
+      display: "inverse-background",
       extendedProps: { ...param },
     };
   });
