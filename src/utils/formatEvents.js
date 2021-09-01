@@ -22,12 +22,8 @@ export default function formatAvailabilities(params) {
       case "Ramy Malik":
         groupId = '6'
         break;
-      case "Sunday":
-        groupId = '7'
-        break;
       default:
     }
-
 
     let daysOfWeek = [];
     switch (day_of_week) {
@@ -57,11 +53,11 @@ export default function formatAvailabilities(params) {
 
     return {
       groupId: groupId,
-      title: name,
+      title: `${name} - Unavailable`,
       daysOfWeek: daysOfWeek,
-      startTime: available_at,
-      endTime: available_until,
-      display: "inverse-background",
+      startTime: available_at.split(' ').join(''),
+      endTime: available_until.split(' ').join(''),
+      // display: "inverse-background",
       extendedProps: { ...param },
     };
   });
