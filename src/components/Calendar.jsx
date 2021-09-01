@@ -22,7 +22,7 @@ const Calendar = ({availabilities, selectedCoach}) => {
       selectMirror={true}
       dayMaxEvents={true}
       slotMinTime="05:00:00"
-      slotMaxTime="21:00:00"
+      slotMaxTime="19:00:00"
       height="auto"
       events={filteredAvailabilities}
     />
