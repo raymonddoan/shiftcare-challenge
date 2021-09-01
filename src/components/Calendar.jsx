@@ -8,6 +8,22 @@ const Calendar = ({availabilities, selectedCoach}) => {
   // TODO: Convert into utils function
   const filteredAvailabilities = availabilities.filter(availability => availability.extendedProps.name.includes(selectedCoach))
 
+  const handleDateSelect = (selectInfo) => {
+    let title = window.confirm('Would you like to book an appointment at this time ?')
+    let calendarApi = selectInfo.view.calendar
+    
+    calendarApi.unselect()
+
+    if (title) {
+      calendarApi.addEvent({
+        title: "Unavailable",
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay
+      })
+    }
+  }
+
   return (
     <FullCalendar
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -25,6 +41,8 @@ const Calendar = ({availabilities, selectedCoach}) => {
       slotMaxTime="19:00:00"
       height="auto"
       events={filteredAvailabilities}
+
+      select={(info) => handleDateSelect(info)}
     />
   );
 };
