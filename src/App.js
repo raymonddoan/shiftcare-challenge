@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
-import Calendar from "./components/Calendar";
-import Sidebar from "./components/Sidebar";
+import Calendar from "./components/molecules/Calendar";
+import Sidebar from "./components/molecules/Sidebar";
 import formatAvailabilities from "./utils/formatEvents";
 
 function App() {
