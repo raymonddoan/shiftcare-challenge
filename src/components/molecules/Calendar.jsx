@@ -3,10 +3,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import filterAvailabilities from "../../utils/filterAvailabilities";
 
 const Calendar = ({availabilities, selectedCoach}) => {
-  // TODO: Convert into utils function
-  const filteredAvailabilities = availabilities.filter(availability => availability.extendedProps.name.includes(selectedCoach))
+  const filteredAvailabilities = filterAvailabilities(availabilities, selectedCoach)
 
   const handleDateSelect = (selectInfo) => {
     let title = window.confirm(`Would you like to book an appointment with ${selectedCoach} at this time ?`)

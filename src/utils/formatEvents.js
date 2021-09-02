@@ -5,6 +5,9 @@ import formatGroupId from './formatGroupId';
 export default function formatAvailabilities(params) {
   return params.map((param) => {
     const { name, day_of_week, available_at, available_until } = param;
+    if (!name || !day_of_week || !available_at || !available_until) {
+      return null
+    }
 
     let groupId = formatGroupId(name)
     let daysOfWeek = formatDaysOfWeek(day_of_week);
