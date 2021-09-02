@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import Container from "./components/atoms/Container";
 import Calendar from "./components/molecules/Calendar";
 import Sidebar from "./components/molecules/Sidebar";
 import formatAvailabilities from "./utils/formatEvents";
@@ -7,7 +8,7 @@ import formatAvailabilities from "./utils/formatEvents";
 function App() {
   const [availabilities, setAvailabilities] = useState([]);
   const [coaches, setCoaches] = useState([]);
-  const [selectedCoach, setSelectedCoach] = useState(null)
+  const [selectedCoach, setSelectedCoach] = useState(null);
 
   const getAvailabilties = () => {
     fetch("./available.json", {
@@ -17,35 +18,34 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => formatAvailabilities(data))
-      .then((data) => setAvailabilities(data))
       // .then((data) => console.log(data))
+      .then((data) => setAvailabilities(data))
       .catch((error) => console.log(error));
   };
 
-  const getCoaches = useCallback(() => {
-    let coachesArray = [];
-    availabilities.forEach((availability) => {
-      if (!coachesArray.includes(availability.extendedProps.name)) {
-        coachesArray.push(availability.extendedProps.name);
-      }
-    });
-    setCoaches(coachesArray);
-  }, [availabilities]);
-
   useEffect(() => {
     getAvailabilties();
-    getCoaches();
-  }, [getCoaches]);
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        Welcome to Ray's Shiftcare Calendar
       </header>
-      <Sidebar coaches={coaches} setSelectedCoach={setSelectedCoach} />
-      {availabilities && <Calendar availabilities={availabilities} selectedCoach={selectedCoach} />}
+      <Container>
+        <Sidebar
+          availabilities={availabilities}
+          coaches={coaches}
+          setCoaches={setCoaches}
+          setSelectedCoach={setSelectedCoach}
+        />
+        {availabilities && (
+          <Calendar
+            availabilities={availabilities}
+            selectedCoach={selectedCoach}
+          />
+        )}
+      </Container>
     </div>
   );
 }

@@ -35,7 +35,7 @@ const Calendar = ({availabilities, selectedCoach}) => {
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
       headerToolbar={{
         left: "prev,next today",
-        center: "title",
+        center: `title`,
         right: "timeGridWeek",
       }}
       initialView="timeGridWeek"
