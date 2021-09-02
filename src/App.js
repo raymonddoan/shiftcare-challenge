@@ -18,7 +18,6 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => formatAvailabilities(data))
-      // .then((data) => console.log(data))
       .then((data) => setAvailabilities(data))
       .catch((error) => console.log(error));
   };
