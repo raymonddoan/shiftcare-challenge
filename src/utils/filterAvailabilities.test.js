@@ -1,7 +1,7 @@
 import filterAvailabilities from "./filterAvailabilities";
 
 describe('filterAvailabilities fn', () => {
-  test('should ', () => {
+  test('should correctly filter out results based on the searched params', () => {
     const input = [
       {
         groupId: 1,
