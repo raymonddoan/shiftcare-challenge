@@ -9,18 +9,24 @@ const Calendar = ({availabilities, selectedCoach}) => {
   const filteredAvailabilities = availabilities.filter(availability => availability.extendedProps.name.includes(selectedCoach))
 
   const handleDateSelect = (selectInfo) => {
-    let title = window.confirm('Would you like to book an appointment at this time ?')
+    let title = window.confirm(`Would you like to book an appointment with ${selectedCoach} at this time ?`)
     let calendarApi = selectInfo.view.calendar
     
     calendarApi.unselect()
 
     if (title) {
       calendarApi.addEvent({
-        title: "Unavailable",
+        title: selectedCoach ? `Appointment with ${selectedCoach}` : "Booked Appointment",
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       })
+    }
+  }
+
+  const handleEventClick = (clickInfo) => {
+    if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      clickInfo.event.remove()
     }
   }
 
@@ -43,6 +49,7 @@ const Calendar = ({availabilities, selectedCoach}) => {
       events={filteredAvailabilities}
 
       select={(info) => handleDateSelect(info)}
+      eventClick={(info) => handleEventClick(info)}
     />
   );
 };
