@@ -47,7 +47,7 @@ const Calendar = ({ availabilities, selectedCoach }) => {
       headerToolbar={{
         left: "prev,next today",
         center: `title`,
-        right: "timeGridWeek",
+        right: "dayGridMonth,timeGridWeek,timeGridDay",
       }}
       initialView="timeGridWeek"
       editable={true}
