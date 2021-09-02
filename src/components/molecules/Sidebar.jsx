@@ -33,13 +33,12 @@ const Sidebar = (props) => {
   return (
     <StyledSidebar>
       <h2>Available Coaches</h2>
-        {coaches.map((coach, i) => (
-          <Button key={i} onClick={(e) => handleClick(e)} value={coach}>
-            {coach}
-          </Button>
-        ))}
-      <div>
-      </div>
+      {coaches.map((coach, i) => (
+        <Button key={i} onClick={(e) => handleClick(e)} value={coach}>
+          {coach}
+        </Button>
+      ))}
+      <div></div>
     </StyledSidebar>
   );
 };
