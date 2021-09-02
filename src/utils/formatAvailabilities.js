@@ -4,8 +4,8 @@ import formatGroupId from "./formatGroupId";
 
 export default function formatAvailabilities(params) {
   return params.map((param) => {
-    const { name, day_of_week, available_at, available_until } = param;
-    if (!name || !day_of_week || !available_at || !available_until) {
+    const { name, timezone, day_of_week, available_at, available_until } = param;
+    if (!name || !timezone | !day_of_week || !available_at || !available_until) {
       return null;
     }
 

@@ -3,7 +3,7 @@ import "./App.css";
 import Container from "./components/atoms/Container";
 import Calendar from "./components/molecules/Calendar";
 import Sidebar from "./components/molecules/Sidebar";
-import formatAvailabilities from "./utils/formatEvents";
+import formatAvailabilities from "./utils/formatAvailabilities";
 
 function App() {
   const [availabilities, setAvailabilities] = useState([]);
